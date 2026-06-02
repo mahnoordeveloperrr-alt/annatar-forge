@@ -4,8 +4,17 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './App.css';
 
 const IMAGES = {
+  heroMain: '/img/3.png',
   heroTexture1: 'img/4.png',
   heroTexture2: 'img/5.png',
+  portfolio: {
+    summit: '/img/6.png',
+    rescue: '/img/7.png',
+    alpineSans: '/img/8.png',
+    avalanche: '/img/9.png',
+    glacial: '/img/10.png',
+    altitude: '/img/11.png',
+  }
 };
 
 gsap.registerPlugin(ScrollTrigger);
@@ -109,7 +118,6 @@ useEffect(() => {
   window.addEventListener('mousemove', onMouseMove);
   animateRing();
 
-  // Use ref.current directly inside handlers to always get the latest DOM element
   const onEnter = () => ringRef.current?.classList.add('large');
   const onLeave = () => ringRef.current?.classList.remove('large');
   const onMouseDown = () => dotRef.current?.classList.add('click');
@@ -138,6 +146,7 @@ useEffect(() => {
     });
   };
 }, []);
+
   // ---------- Dark Mode class ----------
   useEffect(() => {
     document.body.classList.toggle('dark-mode', darkMode);
@@ -242,7 +251,7 @@ useEffect(() => {
     }
   });
 
-  // Reveal elements – use querySelectorAll instead of refs to avoid nulls
+  // Reveal elements
   const revealElements = document.querySelectorAll('.reveal');
   revealElements.forEach(el => {
     ScrollTrigger.create({
@@ -262,6 +271,7 @@ useEffect(() => {
     ease: 'sine.inOut'
   });
 }, []);
+
   // ---------- Testimonial autoplay ----------
   useEffect(() => {
     const advance = () => {
@@ -291,12 +301,12 @@ useEffect(() => {
 
   // ---------- Portfolio filter ----------
   const filteredProjects = [
-    { category: 'branding', img: '/img/6.png', title: 'Summit Rebrand 2025', desc: 'Complete visual identity overhaul for alpine gear brand.', overlay: 'Summit Collective — Full Brand Identity' },
-    { category: 'uiux', img: '/img/7.png', title: 'RescueFlow Dashboard', desc: 'Emergency response system interface for mountain rescue.', overlay: 'RescueFlow — UI Architecture' },
-    { category: 'typography', img: '/img/8.png', title: 'Alpine Sans Typeface', desc: 'Custom geometric sans-serif for high-altitude readability.', overlay: 'Alpine Sans — Custom Typeface' },
-    { category: 'motion', img: '/img/9.png', title: 'Avalanche Awareness Film', desc: 'Animated documentary short on mountain safety.', overlay: 'Avalanche — Motion Storytelling' },
-    { category: 'branding', img: '/img/10.png', title: 'Glacial Packaging System', desc: 'Premium unboxing experience for alpine apparel.', overlay: 'Glacial — Luxury Packaging' },
-    { category: 'uiux', img: '/img/11.png', title: 'Altitude Shop Experience', desc: 'Full e-commerce redesign with immersive 3D product views.', overlay: 'Altitude — E-commerce Platform' }
+    { category: 'branding', img: IMAGES.portfolio.summit, title: 'Summit Rebrand 2025', desc: 'Complete visual identity overhaul for alpine gear brand.', overlay: 'Summit Collective — Full Brand Identity' },
+    { category: 'uiux', img: IMAGES.portfolio.rescue, title: 'RescueFlow Dashboard', desc: 'Emergency response system interface for mountain rescue.', overlay: 'RescueFlow — UI Architecture' },
+    { category: 'typography', img: IMAGES.portfolio.alpineSans, title: 'Alpine Sans Typeface', desc: 'Custom geometric sans-serif for high-altitude readability.', overlay: 'Alpine Sans — Custom Typeface' },
+    { category: 'motion', img: IMAGES.portfolio.avalanche, title: 'Avalanche Awareness Film', desc: 'Animated documentary short on mountain safety.', overlay: 'Avalanche — Motion Storytelling' },
+    { category: 'branding', img: IMAGES.portfolio.glacial, title: 'Glacial Packaging System', desc: 'Premium unboxing experience for alpine apparel.', overlay: 'Glacial — Luxury Packaging' },
+    { category: 'uiux', img: IMAGES.portfolio.altitude, title: 'Altitude Shop Experience', desc: 'Full e-commerce redesign with immersive 3D product views.', overlay: 'Altitude — E-commerce Platform' }
   ];
   const projectsToShow = activeFilter === 'all' ? filteredProjects : filteredProjects.filter(p => p.category === activeFilter);
 
@@ -328,7 +338,6 @@ useEffect(() => {
       {/* Navbar */}
       <div className="fixed top-0 left-0 w-full px-[2px] z-50 mt-3">
         <div className="navbar-glass max-w-[98%] mx-auto flex items-center justify-between backdrop-blur-md bg-white/70 border border-gray-200 rounded-full px-6 py-3 shadow-sm transition-all">
-          {/* Desktop Nav Links */}
           <div className="nav-links-desktop text-lg font-semibold">
             {['home', 'work', 'expertise', 'process', 'praise'].map((label, idx) => {
               const sectionIds = ['heroSection', 'portfolioSection', 'skillsSection', 'processSection', 'testimonialSection'];
@@ -347,7 +356,6 @@ useEffect(() => {
             })}
           </div>
 
-          {/* Hamburger Button (Mobile/Tablet only) */}
           <button
             className="hamburger-btn"
             id="hamburgerBtn"
@@ -357,7 +365,6 @@ useEffect(() => {
             <i className="fa-solid fa-bars"></i>
           </button>
 
-          {/* Right side actions */}
           <div className="nav-actions-desktop">
             <button
               id="darkModeToggle"
@@ -472,7 +479,8 @@ useEffect(() => {
             </div>
             <div className="relative bg-white rounded-3xl shadow-md h-[48rem] overflow-hidden pr-6">
               <div className="image relative h-[48rem] overflow-hidden rounded-3xl">
-                <img src="/img/3.png" className="w-full h-full object-cover" alt="Alpine elevation visual" loading="lazy" onError={(e) => { e.target.src = 'https://placehold.co/900x1200?text=Elevation+Visual'; }} />
+                {/* NOW USING IMAGES.heroMain */}
+                <img src={IMAGES.heroMain} className="w-full h-full object-cover" alt="Alpine elevation visual" loading="lazy" onError={(e) => { e.target.src = 'https://placehold.co/900x1200?text=Elevation+Visual'; }} />
                 <div className="absolute top-4 right-4 flex flex-col gap-3 z-10">
                   {['heart', 'share-nodes', 'bookmark'].map(icon => (
                     <button key={icon} className="w-10 h-10 flex items-center justify-center rounded-full bg-black text-white shadow-md hover:bg-gray-800 transition ripple-btn">
@@ -570,6 +578,7 @@ useEffect(() => {
             {projectsToShow.map((project, idx) => (
               <div key={idx} className="project-card" data-category={project.category}>
                 <div className="relative overflow-hidden h-64">
+                  {/* IMAGES ALREADY FROM IMAGES OBJECT */}
                   <img src={project.img} alt={project.title} className="w-full h-full object-cover" loading="lazy" />
                   <div className="project-overlay">
                     <span className="text-white font-semibold text-lg">{project.overlay}</span>
@@ -679,12 +688,10 @@ useEffect(() => {
                 A London based designer with an infinite love for <span className="highlight-soft">typography</span>, specialised in <span className="highlight-soft">Branding</span> and <span className="highlight-soft">Visual identities</span>.
               </p>
               <div className="small-img-wrapper">
-                {/* FIXED: using IMAGES object */}
                 <img className="small-product-img cursor-target" src={IMAGES.heroTexture1} alt="Typography specimen" loading="lazy" />
               </div>
             </div>
             <div className="right-content">
-              {/* FIXED: using IMAGES object */}
               <img className="portrait-img cursor-target" src={IMAGES.heroTexture2} alt="Lando Sullivan portrait" loading="lazy" />
             </div>
           </div>
