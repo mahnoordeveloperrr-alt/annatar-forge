@@ -3,10 +3,9 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './App.css';
 
-const IMAGES={
-heroTexture1 : 'img/4.png',
-heroTexture2 : 'img/5.png',
-
+const IMAGES = {
+  heroTexture1: 'img/4.png',
+  heroTexture2: 'img/5.png',
 };
 
 gsap.registerPlugin(ScrollTrigger);
@@ -680,11 +679,13 @@ useEffect(() => {
                 A London based designer with an infinite love for <span className="highlight-soft">typography</span>, specialised in <span className="highlight-soft">Branding</span> and <span className="highlight-soft">Visual identities</span>.
               </p>
               <div className="small-img-wrapper">
-                <img className="small-product-img cursor-target" src={heroTexture1} alt="Typography specimen" loading="lazy" />
+                {/* FIXED: using IMAGES object */}
+                <img className="small-product-img cursor-target" src={IMAGES.heroTexture1} alt="Typography specimen" loading="lazy" />
               </div>
             </div>
             <div className="right-content">
-              <img className="portrait-img cursor-target" src={heroTexture2} alt="Lando Sullivan portrait" loading="lazy" />
+              {/* FIXED: using IMAGES object */}
+              <img className="portrait-img cursor-target" src={IMAGES.heroTexture2} alt="Lando Sullivan portrait" loading="lazy" />
             </div>
           </div>
         </div>
