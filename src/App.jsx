@@ -4,16 +4,16 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './App.css';
 
 const IMAGES = {
-  heroMain: '/img/3.png',
+  heroMain: 'img/3.png',
   heroTexture1: 'img/4.png',
   heroTexture2: 'img/5.png',
   portfolio: {
-    summit: '/img/6.png',
-    rescue: '/img/7.png',
-    alpineSans: '/img/8.png',
-    avalanche: '/img/9.png',
-    glacial: '/img/10.png',
-    altitude: '/img/11.png',
+    summit: 'img/6.png',
+    rescue: 'img/7.png',
+    alpineSans: 'img/8.png',
+    avalanche: 'img/9.png',
+    glacial: 'img/10.png',
+    altitude: 'img/11.png',
   }
 };
 
