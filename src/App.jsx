@@ -11,7 +11,7 @@ const IMAGES = {
     summit: 'img/6.png',
     rescue: 'img/7.png',
     alpineSans: 'img/8.png',
-    avalanche: 'img/9.png',
+    avalanche: './img/9.png',
     glacial: 'img/10.png',
     altitude: 'img/11.png',
   }
